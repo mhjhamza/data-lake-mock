@@ -82,14 +82,10 @@ class Datalake:
 if __name__ == "__main__":
 
     data_lake = Datalake()
-
     with mock_s3():
         a = data_lake.upload_file('filename', 'boasdadadasdy')
-        print('status', a)
         conn = boto3.resource('s3', region_name='us-east-1')
         obj = conn.Object(data_lake.BUCKET, 'filename').get()
-        print('bodyyy', obj['Body'].read())
         processed_body = data_lake.process_file('filename')
         data_lake.upload_file('filename', processed_body)
         obj = conn.Object(data_lake.BUCKET, 'filename').get()
-        print('newbodyyy', obj['Body'].read())
