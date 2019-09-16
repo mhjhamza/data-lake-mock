@@ -4,9 +4,7 @@ Feature: ETL Operation on Data Lake
     I must be able to capatalize the file contents.
 
     Scenario: ETL Operation
-        Given   The user is logged-In
-        When    The user selects a file "input/filename.txt"
-        And     Capatalizes the content of file
-        And     stores the file as "processed/filename.txt"
-        Then    The file "processed/filename.txt" must be stored on S3
-        And     the content must be in upper-case
+        Given   The user is logged-In with username "mhjhamza" and password "0000"
+        When    Capatalizes the content of file "filename.txt"
+        And Stores the file as "filename_2.txt"
+        Then The content must be in uppercase
